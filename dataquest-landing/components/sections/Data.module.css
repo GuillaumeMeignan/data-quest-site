@@ -1,0 +1,54 @@
+.section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.intro {
+  margin: 0;
+  color: var(--text-2);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 20px;
+}
+.card {
+  border: 2px solid var(--border-mid);
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--text-2);
+}
+.card h3 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--cream);
+}
+.themes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.themesTitle {
+  font-weight: 700;
+}
+.pills {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pills li {
+  padding: 8px 16px;
+  border-radius: 22px;
+  border: 2px solid var(--ink);
+  font-weight: 700;
+}

@@ -1,0 +1,133 @@
+.inner {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  align-items: center;
+}
+.copy {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.intro {
+  margin: 0;
+  color: var(--text-2);
+}
+.intro strong {
+  color: var(--cream);
+}
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  color: var(--text-2);
+}
+.list strong {
+  font-family: var(--font-title);
+  font-size: 19px;
+  color: var(--cream);
+}
+.icon {
+  flex: none;
+}
+
+.board {
+  flex: 1 1 440px;
+  min-width: 0;
+  background: var(--bg);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  padding: 18px;
+  box-shadow: 0 8px 0 var(--shadow-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.boardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-3);
+}
+.boardHead > span:first-child {
+  font-family: var(--font-title);
+  font-weight: 800;
+  color: var(--text);
+  font-size: 16px;
+}
+.pts {
+  padding: 4px 12px;
+  border-radius: 16px;
+  background: var(--yellow);
+  color: var(--ink);
+  font-weight: 800;
+}
+.slots {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.slots span {
+  aspect-ratio: 3 / 4;
+  border-radius: 8px;
+  border: 2px solid var(--ink);
+}
+.slots .empty {
+  border: 2px dashed var(--border-mid);
+  background: var(--surface);
+}
+.panel {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.panelTitle {
+  font-weight: 700;
+  font-size: 15px;
+}
+.versus {
+  display: flex;
+  height: 18px;
+  border-radius: 9px;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+}
+.versusLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-3);
+}
+.ranking {
+  gap: 6px;
+  font-size: 14px;
+}
+.ranking > div {
+  display: flex;
+  justify-content: space-between;
+}
+.ranking .me {
+  color: var(--yellow);
+  font-weight: 700;
+}
+.note {
+  font-size: 12px;
+  color: var(--text-3);
+  text-align: center;
+}

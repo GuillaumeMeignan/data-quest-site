@@ -1,0 +1,188 @@
+.hero {
+  padding-top: 64px;
+  padding-bottom: 72px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+  overflow-x: clip;
+}
+.copy {
+  flex: 1 1 520px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.badge {
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--yellow);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.h1 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: var(--h1);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.accent {
+  color: var(--yellow);
+}
+.lead {
+  margin: 0;
+  font-size: 20px;
+  color: var(--text-2);
+  max-width: 560px;
+}
+.lead strong {
+  color: var(--cream);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+.assurances {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  font-size: 15px;
+  color: var(--text-3);
+}
+.assurances li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.visual {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+.stage {
+  position: relative;
+  width: 360px;
+  max-width: 100%;
+  height: 440px;
+}
+.back {
+  position: absolute;
+  width: 230px;
+  height: 320px;
+  border-radius: 20px;
+  border: 3px solid var(--ink);
+  box-shadow: 0 6px 0 var(--shadow-dark);
+}
+.backLeft {
+  left: 10px;
+  top: 40px;
+  background: #7b5ea7;
+  transform: rotate(-14deg);
+}
+.backRight {
+  left: 130px;
+  top: 30px;
+  background: #1e88b5;
+  transform: rotate(12deg);
+}
+.card {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  width: 270px;
+  height: 370px;
+  border-radius: 22px;
+  background: var(--cream);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  box-shadow: 0 8px 0 var(--shadow-dark);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: float 6s ease-in-out infinite;
+}
+.cardHead {
+  background: #1f7d72;
+  color: var(--cream);
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 800;
+  font-family: var(--font-title);
+  font-size: 15px;
+}
+.cardBody {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.question {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.2;
+}
+.answer {
+  padding: 8px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.picked {
+  border-width: 3px;
+  background: var(--yellow);
+  font-weight: 800;
+}
+.combo {
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  padding: 8px 16px;
+  border-radius: 24px;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 17px;
+  transform: rotate(6deg);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-4deg);
+  }
+}
+
+/* Fix of the mock-up: on narrow screens the rotated cards overflowed to the right. */
+@media (max-width: 480px) {
+  .visual {
+    flex-basis: 100%;
+    height: 370px;
+    overflow: hidden;
+  }
+  .stage {
+    flex: none;
+    transform: scale(0.82);
+    transform-origin: top center;
+  }
+}

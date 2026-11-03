@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+.env
+.env.local
+.env*.local
+.leads
+playwright-report
+test-results
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+lighthouse-*.json

@@ -1,0 +1,43 @@
+.inner {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+}
+.photo {
+  width: 120px;
+  height: 120px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--border-dark);
+  border: 3px dashed var(--border-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--text-3);
+  text-align: center;
+}
+.copy {
+  flex: 1 1 480px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.copy h2 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 28px;
+}
+.copy p {
+  margin: 0;
+  color: var(--text-2);
+}
+.sign {
+  font-weight: 700;
+  color: var(--yellow);
+}
