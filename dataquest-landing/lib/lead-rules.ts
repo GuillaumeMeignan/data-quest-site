@@ -99,8 +99,8 @@ export const FIELD_ORDER: FieldName[] = [
 const inList = <T extends string>(list: readonly T[], v: string): v is T => (list as readonly string[]).includes(v);
 
 /**
- * Dependency-free validation used in the browser (keeps zod out of the client bundle).
- * The server re-validates with the zod schema in lead-schema.ts; tests check both agree.
+ * Dependency-free validation used in the browser .
+ * Validation runs in the browser (static site).
  */
 export function checkLeadFields(raw: ReturnType<typeof readLeadFields>): FieldErrors {
   const e: FieldErrors = {};

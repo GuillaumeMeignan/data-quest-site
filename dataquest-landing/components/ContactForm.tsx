@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
-import { submitLead } from "@/app/actions";
 import { track } from "@/lib/analytics";
+import { sendLead } from "@/lib/send-lead";
 import {
   ANALYTICS_LABELS,
   ANALYTICS_TOOLS,
@@ -102,7 +102,7 @@ export function ContactForm() {
     setFormError("");
     setStatus("sending");
     try {
-      const result = await submitLead(data);
+      const result = await sendLead(data);
       if (result.ok) {
         track({
           event: "form_submit_success",

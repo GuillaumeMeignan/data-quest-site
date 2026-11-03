@@ -1,9 +1,22 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { readdirSync, readFileSync, rmSync } from "node:fs";
-import path from "node:path";
 
-const LEADS_DIR = path.join(process.cwd(), ".leads");
+type Posted = { url: string; body: Record<string, string> };
+
+/** Intercepts Web3Forms: records the payload and answers with the given status. */
+async function mockWeb3forms(page: Page, status = 200) {
+  const posted: Posted[] = [];
+  await page.route("https://api.web3forms.com/submit", async (route) => {
+    posted.push({ url: route.request().url(), body: route.request().postDataJSON() });
+    await route.fulfill({
+      status,
+      contentType: "application/json",
+      headers: { "access-control-allow-origin": "*" },
+      body: JSON.stringify({ success: status === 200 }),
+    });
+  });
+  return posted;
+}
 
 async function dataLayer(page: Page) {
   return page.evaluate(() => (window.dataLayer ?? []) as Record<string, unknown>[]);
@@ -21,7 +34,6 @@ async function fillValid(page: Page, overrides: { email?: string } = {}) {
 }
 
 test.beforeEach(async ({ page }) => {
-  rmSync(LEADS_DIR, { recursive: true, force: true });
   await page.goto("/");
 });
 
@@ -60,7 +72,8 @@ test("contact form: webmail address is refused kindly", async ({ page }) => {
   await expect(page.getByLabel("Entreprise", { exact: true })).toHaveValue("Maison Dupont");
 });
 
-test("contact form: full journey writes the lead to .leads and shows the confirmation", async ({ page }) => {
+test("contact form: full journey posts to Web3Forms and shows the confirmation", async ({ page }) => {
+  const posted = await mockWeb3forms(page);
   await fillValid(page);
   await page.waitForTimeout(3200);
   await page.getByRole("button", { name: "Réserver ma démo" }).click();
@@ -70,10 +83,13 @@ test("contact form: full journey writes the lead to .leads and shows the confirm
   await expect(status).toContainText("Carte jouée !");
   await expect(page.locator("form")).toHaveCount(0);
 
-  const files = readdirSync(LEADS_DIR);
-  expect(files).toHaveLength(1);
-  const lead = JSON.parse(readFileSync(path.join(LEADS_DIR, files[0]!), "utf8"));
-  expect(lead).toMatchObject({ need: "demo", email: "camille@entreprise.fr", company: "Maison Dupont", players: "50-200", tool: "ga4" });
+  expect(posted).toHaveLength(1);
+  expect(posted[0]!.body).toMatchObject({
+    access_key: "e2e-test-key",
+    email: "camille@entreprise.fr",
+    subject: "[Data Quest] Nouvelle demande : Une démo de 30 min — Maison Dupont",
+  });
+  expect(posted[0]!.body.message).toContain("Maison Dupont");
 
   const events = await dataLayer(page);
   expect(events).toContainEqual({ event: "form_start", need: "demo" });
@@ -86,11 +102,23 @@ test("contact form: full journey writes the lead to .leads and shows the confirm
   await expect(page.getByLabel("Prénom et nom")).toHaveValue("");
 });
 
+test("contact form: delivery failure shows a clear message and keeps the data", async ({ page }) => {
+  await mockWeb3forms(page, 500);
+  await fillValid(page);
+  await page.waitForTimeout(3200);
+  await page.getByRole("button", { name: "Réserver ma démo" }).click();
+  await expect(page.locator("form").getByRole("alert")).toContainText("L’envoi n’a pas abouti");
+  await expect(page.getByLabel("Entreprise", { exact: true })).toHaveValue("Maison Dupont");
+  expect(await dataLayer(page)).toContainEqual({ event: "form_submit_error", error_type: "send_failed" });
+});
+
 test("contact form: submitting too fast is refused with a clear message and data is kept", async ({ page }) => {
+  const posted = await mockWeb3forms(page);
   await fillValid(page);
   await page.getByRole("button", { name: "Réserver ma démo" }).click();
   await expect(page.locator("form").getByRole("alert")).toContainText("un peu vite");
   await expect(page.getByLabel("Entreprise", { exact: true })).toHaveValue("Maison Dupont");
+  expect(posted).toHaveLength(0);
 });
 
 test("CTA buttons pre-select the need and push cta_click events", async ({ page }) => {
@@ -186,5 +214,6 @@ test("seo: robots, sitemap and open graph image", async ({ request, page }) => {
   const og = await page.locator('meta[property="og:image"]').getAttribute("content");
   expect(og).toBeTruthy();
   const img = await request.get(new URL(og!).pathname);
+  expect(og).toContain("/og.png");
   expect(img.headers()["content-type"]).toContain("image/png");
 });

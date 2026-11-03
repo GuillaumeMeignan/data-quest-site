@@ -29,7 +29,7 @@ export default function MentionsLegales() {
 
       <h2>Hébergement</h2>
       <p>
-        Le site est hébergé par <T>hébergeur (ex. Vercel Inc.)</T>, <T>adresse de l’hébergeur</T>.
+        Le site est hébergé par GitHub, Inc. (GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.
       </p>
 
       <h2>Propriété intellectuelle</h2>

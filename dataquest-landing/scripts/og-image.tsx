@@ -1,5 +1,8 @@
+// Source of public/og.png (generated once with next/og, static hosting cannot serve an extensionless route).
+// To regenerate: copy to app/opengraph-image.tsx, run the app, save /opengraph-image as public/og.png.
 import { ImageResponse } from "next/og";
 
+export const dynamic = "force-static";
 export const alt = "Data Quest — le jeu de cartes quotidien sur vos vraies données";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

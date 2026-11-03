@@ -18,14 +18,13 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "npm run build && npm run start -- -p 3100",
+    command: "npm run build && npx serve out -l 3100",
     url: "http://localhost:3100",
     reuseExistingServer: !process.env.CI,
     timeout: 240_000,
     env: {
       NEXT_PUBLIC_SITE_URL: "http://localhost:3100",
-      LEAD_RATE_LIMIT: "100",
-      WEB3FORMS_ACCESS_KEY: "",
+      NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: "e2e-test-key",
     },
   },
 });
