@@ -34,7 +34,7 @@ export default function Confidentialite() {
       <h2>Destinataires</h2>
       <p>
         Les données sont destinées à l’éditeur. Elles sont transmises par email via un prestataire d’envoi
-        (Mailjet) <T>et, le cas échéant, autres sous-traitants : stockage, CRM</T>.
+        (Web3Forms) <T>et, le cas échéant, autres sous-traitants : stockage, CRM</T>.
       </p>
 
       <h2>Durée de conservation</h2>

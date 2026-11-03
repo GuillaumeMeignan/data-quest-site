@@ -5,10 +5,10 @@ Classement par priorité (le plus bloquant pour la mise en ligne en premier).
 
 ## Priorité haute (bloquant pour la production)
 
-1. **Nom de domaine et URL finale** — Défaut : `NEXT_PUBLIC_SITE_URL=http://localhost:3000` (OG, sitemap, canonical). À renseigner dans Vercel dès que le domaine est connu.
-2. **Adresse qui reçoit les demandes + email de confirmation au prospect** — Défaut : une seule notification interne vers `LEAD_NOTIFY_EMAIL`, `Reply-To` = prospect. Pas d'email de confirmation envoyé au prospect (le texte « Je reviens vers vous très vite » suffit). Alternative : 2ᵉ message Mailjet au prospect (à ajouter dans `lib/mailjet.ts`).
-3. **Domaine expéditeur Mailjet** — Défaut : `MAIL_FROM` à valider (SPF/DKIM) dans Mailjet, sinon les emails partent en spam ou sont refusés.
-4. **Stockage des demandes en plus de l'email** — Défaut : aucun (email seul ; fichiers `.leads/` uniquement en local sans clés Mailjet). Sur Vercel le disque est en lecture seule : sans clés Mailjet configurées, l'envoi échoue proprement avec un message d'erreur. Alternative : Supabase / Google Sheets / CRM.
+1. **Nom de domaine et URL finale** — ✅ Tranché : `data-quest.fr`. Renseigner `NEXT_PUBLIC_SITE_URL=https://data-quest.fr` dans Vercel (valeur d'exemple dans `.env.example`).
+2. **Destinataire des demandes + confirmation au prospect** — ✅ Tranché : Web3Forms. Le destinataire est l'adresse liée à la clé `WEB3FORMS_ACCESS_KEY` ; pas d'email de confirmation au prospect. Point à vérifier : l'appel serveur à serveur peut dépendre du plan Web3Forms (voir README).
+3. **Email de confirmation** — Non prévu (option payante Web3Forms).
+4. **Stockage des demandes en plus de l'email** — Défaut : aucun (email seul ; fichiers `.leads/` uniquement en local sans clé Web3Forms). Sur Vercel le disque est en lecture seule : sans clé Web3Forms configurée, l'envoi échoue proprement avec un message d'erreur. Alternative : Supabase / Google Sheets / CRM.
 5. **Mentions légales et politique de confidentialité** — Défaut : structure standard avec des `[À COMPLÉTER]` (éditeur, SIREN, hébergeur, DPO/contact, durées de conservation, base légale). Aucune donnée inventée. À faire relire.
 
 ## Priorité moyenne

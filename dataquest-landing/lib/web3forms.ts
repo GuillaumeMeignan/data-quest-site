@@ -1,6 +1,6 @@
 import { NEED_LABELS, PLAYERS_LABELS, ANALYTICS_LABELS, type LeadInput } from "./lead-schema";
 
-const MAILJET_URL = "https://api.mailjet.com/v3.1/send";
+const WEB3FORMS_URL = "https://api.web3forms.com/submit";
 
 export function buildSubject(lead: Pick<LeadInput, "need" | "company">): string {
   return `[Data Quest] Nouvelle demande : ${NEED_LABELS[lead.need]} — ${lead.company}`;
@@ -30,35 +30,32 @@ export function buildLeadBody(lead: LeadInput) {
   return { text, html };
 }
 
-export function hasMailjetConfig(env: NodeJS.ProcessEnv = process.env): boolean {
-  return Boolean(env.MAILJET_API_KEY && env.MAILJET_API_SECRET && env.MAIL_FROM && env.LEAD_NOTIFY_EMAIL);
+export function hasWeb3formsConfig(env: NodeJS.ProcessEnv = process.env): boolean {
+  return Boolean(env.WEB3FORMS_ACCESS_KEY);
 }
 
+/** Sends the notification through Web3Forms (the recipient is bound to the access key). */
 export async function sendLeadEmail(
   lead: LeadInput,
   env: NodeJS.ProcessEnv = process.env,
   fetchImpl: typeof fetch = fetch,
 ): Promise<void> {
-  const { text, html } = buildLeadBody(lead);
-  const auth = Buffer.from(`${env.MAILJET_API_KEY}:${env.MAILJET_API_SECRET}`).toString("base64");
-  const res = await fetchImpl(MAILJET_URL, {
+  const { text } = buildLeadBody(lead);
+  const res = await fetchImpl(WEB3FORMS_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Basic ${auth}` },
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
-      Messages: [
-        {
-          From: { Email: env.MAIL_FROM, Name: "Data Quest" },
-          To: [{ Email: env.LEAD_NOTIFY_EMAIL }],
-          ReplyTo: { Email: lead.email, Name: lead.name },
-          Subject: buildSubject(lead),
-          TextPart: text,
-          HTMLPart: html,
-        },
-      ],
+      access_key: env.WEB3FORMS_ACCESS_KEY,
+      subject: buildSubject(lead),
+      from_name: "Data Quest",
+      name: lead.name,
+      email: lead.email, // used by Web3Forms as Reply-To
+      message: text,
     }),
     signal: AbortSignal.timeout(10_000),
   });
-  if (!res.ok) {
-    throw new Error(`Mailjet responded with HTTP ${res.status}`);
+  const body = (await res.json().catch(() => null)) as { success?: boolean } | null;
+  if (!res.ok || !body?.success) {
+    throw new Error(`Web3Forms responded with HTTP ${res.status}`);
   }
 }

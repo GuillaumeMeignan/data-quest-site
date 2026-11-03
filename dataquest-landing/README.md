@@ -16,7 +16,7 @@ npm run dev                  # http://localhost:3000
 | --- | --- |
 | `npm run lint` / `npm run typecheck` | ESLint / TypeScript strict |
 | `npm run build` / `npm start` | Build et serveur de production |
-| `npm test` | Vitest (validation, anti-spam, Mailjet simulé, masquage des logs) |
+| `npm test` | Vitest (validation, anti-spam, Web3Forms simulé, masquage des logs) |
 | `npm run test:e2e` | Playwright (build + serveur sur le port 3100, parcours formulaire, dataLayer, axe, 390 px) |
 
 Playwright : si Chromium est déjà installé sur la machine, `PW_CHROMIUM_PATH=/chemin/vers/chromium npm run test:e2e`. Sinon `npx playwright install chromium`.
@@ -26,26 +26,26 @@ Playwright : si Chromium est déjà installé sur la machine, `PW_CHROMIUM_PATH=
 | Variable | Rôle |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | URL publique (Open Graph, sitemap, canonical), sans slash final |
-| `MAILJET_API_KEY`, `MAILJET_API_SECRET` | Clés API Mailjet |
-| `MAIL_FROM` | Adresse expéditrice (domaine à valider dans Mailjet) |
-| `LEAD_NOTIFY_EMAIL` | Destinataire des notifications |
+| `WEB3FORMS_ACCESS_KEY` | Clé d'accès Web3Forms (liée à l'adresse qui reçoit les demandes) |
 | `LEAD_RATE_LIMIT` | (optionnel) demandes max / IP / 10 min, défaut 5 |
 
-**Sans clés Mailjet** (développement) : rien n'est envoyé, la demande est écrite dans `.leads/*.json` (ignoré par git) et la confirmation s'affiche normalement.
+**Sans clé Web3Forms** (développement) : rien n'est envoyé, la demande est écrite dans `.leads/*.json` (ignoré par git) et la confirmation s'affiche normalement.
 
 ## Déploiement sur Vercel
 
 1. Importer le dépôt, **Root Directory** = `dataquest-landing`, framework Next.js (détecté).
-2. Renseigner les 5 variables ci-dessus (Production + Preview).
+2. Renseigner `NEXT_PUBLIC_SITE_URL=https://data-quest.fr` et `WEB3FORMS_ACCESS_KEY` (Production + Preview).
 3. Déployer. La page est statique ; seule l'action serveur du formulaire s'exécute à la demande.
 
-Le disque de Vercel est en lecture seule : en production, les clés Mailjet sont obligatoires (sinon l'envoi échoue avec un message clair).
+Le disque de Vercel est en lecture seule : en production, la clé Web3Forms est obligatoire (sinon l'envoi échoue avec un message clair).
 
-## Configuration Mailjet
+## Configuration Web3Forms
 
-1. Créer les clés sur <https://app.mailjet.com/account/apikeys>.
-2. **Valider le domaine expéditeur** (Account → Sender domains & addresses) : ajouter les enregistrements SPF et DKIM du domaine de `MAIL_FROM`. Sans validation, Mailjet refuse l'envoi ou le message part en spam.
-3. Les emails sont envoyés via l'API Send v3.1 (`fetch`, sans SDK) : objet `[Data Quest] Nouvelle demande : <besoin> — <entreprise>`, `Reply-To` = email du prospect.
+1. Sur <https://web3forms.com>, créer une clé d'accès en indiquant l'adresse email qui doit recevoir les demandes (c'est elle, et non une variable du projet, qui définit le destinataire).
+2. Mettre la clé dans `WEB3FORMS_ACCESS_KEY` (Vercel : Production + Preview).
+3. L'envoi se fait depuis le serveur (`POST https://api.web3forms.com/submit`, JSON) : objet `[Data Quest] Nouvelle demande : <besoin> — <entreprise>`, `email` du prospect utilisé comme adresse de réponse.
+4. ⚠️ Web3Forms réserve les appels serveur à serveur à certaines offres : si l'API répond par une erreur de type « server-side access restricted », vérifier le plan du compte (ou passer l'appel côté navigateur, la clé étant faite pour être publique).
+5. Pas d'email de confirmation au prospect (option payante chez Web3Forms).
 
 ## Architecture
 
@@ -55,7 +55,7 @@ components/sections/ une section = un composant + son CSS Module
 components/          ContactForm (client), Analytics (client : dataLayer + pré-sélection du besoin)
 content/             données répétées (thèmes, FAQ, tarifs, étapes)
 lib/                 lead-rules (validation sans dépendance, client) · lead-schema (zod, serveur)
-                     submit-lead (anti-spam, envoi) · mailjet · leads-store · rate-limit · mask · analytics
+                     submit-lead (anti-spam, envoi) · web3forms · leads-store · rate-limit · mask · analytics
 styles/ui.module.css composants partagés (boutons, titres, conteneur)
 tests/               unit (Vitest) et e2e (Playwright)
 docs/captures/       captures 1440 px et 390 px, image OG
@@ -73,4 +73,4 @@ docs/captures/       captures 1440 px et 390 px, image OG
 
 ## À compléter avant mise en ligne
 
-Voir `QUESTIONS.md` : domaine, destinataire, domaine Mailjet, mentions légales et confidentialité (`[À COMPLÉTER]`), photo, outil de mesure et consentement.
+Voir `QUESTIONS.md` : domaine, plan Web3Forms, mentions légales et confidentialité (`[À COMPLÉTER]`), photo, outil de mesure et consentement.

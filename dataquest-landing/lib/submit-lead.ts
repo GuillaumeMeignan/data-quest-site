@@ -1,5 +1,5 @@
 import { readLeadFields, validateLead, type FieldErrors } from "./lead-schema";
-import { hasMailjetConfig, sendLeadEmail } from "./mailjet";
+import { hasWeb3formsConfig, sendLeadEmail } from "./web3forms";
 import { saveLeadLocally } from "./leads-store";
 import { isRateLimited } from "./rate-limit";
 import { maskEmail, maskPhone } from "./mask";
@@ -49,7 +49,7 @@ export async function processLead(formData: FormData, deps: SubmitDeps): Promise
 
   const lead = parsed.data;
   try {
-    if (hasMailjetConfig(env)) {
+    if (hasWeb3formsConfig(env)) {
       await sendLeadEmail(lead, env, deps.fetchImpl);
     } else {
       await (deps.save ?? saveLeadLocally)(lead);

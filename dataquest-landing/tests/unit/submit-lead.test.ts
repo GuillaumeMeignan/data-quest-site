@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { processLead } from "@/lib/submit-lead";
 import { resetRateLimit } from "@/lib/rate-limit";
-import { buildSubject, sendLeadEmail } from "@/lib/mailjet";
+import { buildSubject, sendLeadEmail } from "@/lib/web3forms";
 import { maskEmail, maskPhone } from "@/lib/mask";
 import { validateLead } from "@/lib/lead-schema";
 
@@ -24,12 +24,7 @@ function form(overrides: Record<string, string> = {}) {
   return f;
 }
 
-const mailEnv = {
-  MAILJET_API_KEY: "key",
-  MAILJET_API_SECRET: "secret",
-  MAIL_FROM: "contact@data-quest.test",
-  LEAD_NOTIFY_EMAIL: "guillaume@kimetrix.test",
-} as unknown as NodeJS.ProcessEnv;
+const mailEnv = { WEB3FORMS_ACCESS_KEY: "test-key" } as unknown as NodeJS.ProcessEnv;
 
 beforeEach(() => {
   resetRateLimit();
@@ -39,32 +34,20 @@ beforeEach(() => {
 afterEach(() => vi.restoreAllMocks());
 
 describe("processLead", () => {
-  it("sends the lead through the Mailjet API v3.1 with the right payload", async () => {
-    const fetchImpl = vi.fn(async () => new Response("{}", { status: 200 }));
+  it("sends the lead through the Web3Forms API with the right payload", async () => {
+    const fetchImpl = vi.fn(async () => new Response('{"success":true}', { status: 200 }));
     const save = vi.fn();
     const r = await processLead(form(), { ip: "1.1.1.1", env: mailEnv, fetchImpl: fetchImpl as unknown as typeof fetch, save });
     expect(r).toEqual({ ok: true });
     expect(save).not.toHaveBeenCalled();
     expect(fetchImpl).toHaveBeenCalledTimes(1);
     const [url, init] = fetchImpl.mock.calls[0] as unknown as [string, RequestInit];
-    expect(url).toBe("https://api.mailjet.com/v3.1/send");
-    expect((init.headers as Record<string, string>).Authorization).toBe(`Basic ${Buffer.from("key:secret").toString("base64")}`);
-    const msg = JSON.parse(init.body as string).Messages[0];
-    expect(msg.From.Email).toBe("contact@data-quest.test");
-    expect(msg.To[0].Email).toBe("guillaume@kimetrix.test");
-    expect(msg.ReplyTo.Email).toBe("camille@entreprise.fr");
-    expect(msg.Subject).toBe("[Data Quest] Nouvelle demande : Un devis Enterprise — Maison Dupont");
-    expect(msg.TextPart).toContain("Camille Roux");
-  });
-
-  it("escapes HTML in the email body", async () => {
-    const fetchImpl = vi.fn(async () => new Response("{}", { status: 200 }));
-    await processLead(form({ message: "<script>alert(1)</script>" }), {
-      ip: "1.1.1.2", env: mailEnv, fetchImpl: fetchImpl as unknown as typeof fetch,
-    });
-    const body = JSON.parse(((fetchImpl.mock.calls[0] as unknown as [string, RequestInit])[1].body) as string);
-    expect(body.Messages[0].HTMLPart).not.toContain("<script>");
-    expect(body.Messages[0].HTMLPart).toContain("&lt;script&gt;");
+    expect(url).toBe("https://api.web3forms.com/submit");
+    const msg = JSON.parse(init.body as string);
+    expect(msg.access_key).toBe("test-key");
+    expect(msg.email).toBe("camille@entreprise.fr");
+    expect(msg.subject).toBe("[Data Quest] Nouvelle demande : Un devis Enterprise — Maison Dupont");
+    expect(msg.message).toContain("Camille Roux");
   });
 
   it("reports a delivery failure and keeps the user informed", async () => {
@@ -74,7 +57,7 @@ describe("processLead", () => {
     expect(!r.ok && r.kind).toBe("send_failed");
   });
 
-  it("falls back to local storage without Mailjet keys", async () => {
+  it("falls back to local storage without a Web3Forms key", async () => {
     const save = vi.fn(async () => "/tmp/x.json");
     const fetchImpl = vi.fn();
     const r = await processLead(form(), { ip: "1.1.1.4", env: {} as NodeJS.ProcessEnv, fetchImpl: fetchImpl as unknown as typeof fetch, save });
@@ -134,18 +117,18 @@ describe("processLead", () => {
   });
 });
 
-describe("mailjet helpers", () => {
+describe("web3forms helpers", () => {
   it("builds the subject", () => {
     expect(buildSubject({ need: "pilot", company: "ACME" })).toBe("[Data Quest] Nouvelle demande : Une partie pilote — ACME");
   });
 
-  it("throws on a non-2xx Mailjet response", async () => {
+  it("throws on a failed Web3Forms response", async () => {
     const parsed = validateLead({
       need: "demo", name: "A B", email: "a@b.fr", company: "C", players: "lt20", tool: "piano", consent: true,
     });
     if (!parsed.ok) throw new Error("invalid fixture");
-    const fetchImpl = vi.fn(async () => new Response("", { status: 401 }));
-    await expect(sendLeadEmail(parsed.data, mailEnv, fetchImpl as unknown as typeof fetch)).rejects.toThrow("401");
+    const fetchImpl = vi.fn(async () => new Response('{"success":false}', { status: 400 }));
+    await expect(sendLeadEmail(parsed.data, mailEnv, fetchImpl as unknown as typeof fetch)).rejects.toThrow("400");
   });
 });
 

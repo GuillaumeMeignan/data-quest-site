@@ -25,8 +25,7 @@ export default defineConfig({
     env: {
       NEXT_PUBLIC_SITE_URL: "http://localhost:3100",
       LEAD_RATE_LIMIT: "100",
-      MAILJET_API_KEY: "",
-      MAILJET_API_SECRET: "",
+      WEB3FORMS_ACCESS_KEY: "",
     },
   },
 });
