@@ -32,7 +32,7 @@ Puis ouvrir <http://localhost:8000> (aucune installation nécessaire). Autre opt
 
 Le site étant statique, le formulaire appelle Web3Forms **depuis le navigateur**. Il faut renseigner `WEB3FORMS_ACCESS_KEY` dans `assets/js/config.js` (clé créée sur <https://web3forms.com>, liée à l'adresse qui reçoit les demandes). Cette clé est publique par conception : elle ne permet que d'envoyer des messages vers cette adresse. Dans le tableau de bord Web3Forms, lui associer le domaine `data-quest.fr` si l'offre le permet.
 
-Sans clé : en local (`localhost`), rien n'est envoyé et la confirmation s'affiche ; en ligne, l'envoi échoue avec un message clair.
+Sans clé (champ vide dans `assets/js/config.js`) : en local (`localhost`), rien n'est envoyé et la confirmation s'affiche ; en ligne, l'envoi échoue avec un message clair.
 
 Anti-spam : champ piège invisible et délai minimal de 3 s avant l'envoi. Les événements de mesure (`cta_click`, `form_*`, `faq_open`) sont poussés dans `window.dataLayer`, sans outil ni donnée personnelle.
 
@@ -42,5 +42,5 @@ Le workflow `.github/workflows/deploy.yml` copie les fichiers du site (sans buil
 
 1. **Settings → Pages → Source : GitHub Actions.**
 2. **Domaine** : dans Settings → Pages, renseigner `data-quest.fr` (le fichier `CNAME` le garde à chaque déploiement) et cocher « Enforce HTTPS ». Chez le registrar : pour `data-quest.fr` (apex), enregistrements `A` vers `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` ; pour `www`, un `CNAME` vers `<compte>.github.io`. Vérifier ces adresses dans la documentation GitHub Pages au moment de la mise en place.
-3. **Avant la mise en ligne** : renseigner la clé dans `assets/js/config.js`, compléter les pages légales (puis retirer leur `noindex`), tester un envoi réel.
+3. **Avant la mise en ligne** : compléter les pages légales (puis retirer leur `noindex`), tester un envoi réel.
 4. La branche de travail n'est pas déployée : fusionner dans `main` pour publier.
