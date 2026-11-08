@@ -1,4 +1,4 @@
-name: Deploy landing to GitHub Pages
+name: Deploy site to GitHub Pages
 
 on:
   push:
@@ -15,35 +15,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: dataquest-landing
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: dataquest-landing/package-lock.json
-      - run: npm ci
-      - run: npm run lint && npm run typecheck && npm test
-      - run: npm run build
-        env:
-          NEXT_PUBLIC_SITE_URL: https://data-quest.fr
-          # Repository variable or secret (Settings > Secrets and variables > Actions).
-          NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ vars.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || secrets.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY }}
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dataquest-landing/out
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+      # Aucun build : on publie uniquement les fichiers du site (pas les notes du dépôt).
+      - name: Préparer le site
+        run: |
+          mkdir _site
+          cp -r index.html 404.html robots.txt sitemap.xml CNAME .nojekyll assets mentions-legales confidentialite _site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

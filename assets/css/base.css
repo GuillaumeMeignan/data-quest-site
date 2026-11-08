@@ -1,0 +1,83 @@
+/* Polices hébergées localement (sous-ensemble latin, couvre le français).
+   Polices variables : l'axe de taille optique (opsz) est conservé. */
+@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-stretch: 100%; font-display: swap; src: url("../fonts/bricolage-grotesque-latin-variable.woff2") format("woff2"); }
+@font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 200 1000; font-stretch: 100%; font-display: swap; src: url("../fonts/nunito-sans-latin-variable.woff2") format("woff2"); }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  overflow-x: clip;
+}
+
+a {
+  color: var(--green);
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+summary {
+  cursor: pointer;
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -64px;
+  z-index: 100;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 2px solid var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}

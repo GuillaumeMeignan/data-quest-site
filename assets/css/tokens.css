@@ -1,0 +1,27 @@
+/* Variables de design (couleurs, polices, gabarits). */
+:root {
+  --bg: #14302b;
+  --surface: #1d3f38;
+  --border-dark: #2b5249;
+  --border-mid: #4e7a6e;
+  --shadow-dark: #0c1f1b;
+  --shadow-light: #22201c;
+  --text: #f4eedf;
+  --text-2: #dce5df;
+  --text-3: #b9c7bf;
+  --cream: #fff7e8;
+  --white: #ffffff;
+  --ink: #22201c;
+  --ink-2: #3f3a31;
+  --ink-3: #5d574c;
+  --yellow: #f7c548;
+  --green: #1e6b5e;
+  --teal: #2a9d8f;
+  --focus: #f7c548;
+  --font-title: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+  --maxw: 1248px; /* 1200px of content + 2 x 24px gutter */
+  --gutter: 24px;
+  --h1: clamp(2.4rem, 5vw, 3.9rem);
+  --h2: clamp(2rem, 3.6vw, 2.8rem);
+}

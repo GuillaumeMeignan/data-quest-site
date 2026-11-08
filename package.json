@@ -1,0 +1,10 @@
+{
+  "name": "data-quest-site",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Landing page de vente de Data Quest (site statique, sans dépendance).",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "start": "node scripts/dev.js"
+  }
+}

@@ -1,0 +1,5 @@
+Bricolage Grotesque (Copyright 2022 The Bricolage Grotesque Project Authors) et
+Nunito Sans (Copyright 2016 The Nunito Project Authors) sont distribuées sous la
+licence SIL Open Font License, Version 1.1 : https://openfontlicense.org
+Les fichiers .woff2 de ce dossier sont le sous-ensemble « latin » des versions
+variables publiées par Google Fonts.
