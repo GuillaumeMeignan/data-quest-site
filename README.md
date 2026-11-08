@@ -6,7 +6,7 @@ Page one-page B2B en **HTML, CSS et JavaScript statiques**, sans framework, sans
 
 ```
 index.html                      page d'accueil (toutes les sections)
-mentions-legales/index.html     pages légales (noindex tant qu'elles contiennent des [À COMPLÉTER])
+mentions-legales/index.html     pages légales
 confidentialite/index.html
 404.html
 assets/css/                     tokens.css (variables), base.css (polices, reset), site.css (composants)
@@ -42,5 +42,5 @@ Le workflow `.github/workflows/deploy.yml` copie les fichiers du site (sans buil
 
 1. **Settings → Pages → Source : GitHub Actions.**
 2. **Domaine** : dans Settings → Pages, renseigner `data-quest.fr` (le fichier `CNAME` le garde à chaque déploiement) et cocher « Enforce HTTPS ». Chez le registrar : pour `data-quest.fr` (apex), enregistrements `A` vers `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` ; pour `www`, un `CNAME` vers `<compte>.github.io`. Vérifier ces adresses dans la documentation GitHub Pages au moment de la mise en place.
-3. **Avant la mise en ligne** : compléter les pages légales (puis retirer leur `noindex`), tester un envoi réel.
+3. **Avant la mise en ligne** : relire les pages légales avec un juriste, tester un envoi réel.
 4. La branche de travail n'est pas déployée : fusionner dans `main` pour publier.

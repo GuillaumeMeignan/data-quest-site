@@ -29,6 +29,6 @@ Classement par priorité (le plus bloquant pour la mise en ligne en premier).
 14. **Listes déroulantes** — Première option présélectionnée (comme la maquette) : « Moins de 20 » et « Piano Analytics ». Alternative : option vide « Choisir… » pour forcer un choix conscient.
 15. **Domaines webmail** — En plus de la liste du brief, `googlemail` et `live` sont refusés. `orange.fr` est refusé mais pas `orange.com` (collaborateurs Orange) : à ajuster si besoin.
 16. **Texte « 5 semaines »** (hero, offre Enterprise) vs « 4 à 5 semaines » (étapes) — repris tel quel de la maquette ; à harmoniser si vous le souhaitez.
-17. **Pages légales** — `noindex` (tant qu'elles contiennent des `[À COMPLÉTER]`). À retirer une fois complétées.
+17. **Pages légales** — ✅ Complétées avec les informations de KIMETRIX (SARL, SIREN 948 974 274). TVA calculée à partir du SIREN (`FR91948974274`), greffe « Nanterre » déduit de l’adresse, hébergeur indiqué : GitHub Pages ; durée de conservation 3 ans, base légale consentement. `noindex` retiré. À faire relire par un juriste.
 18. **Dépendances et tests** — ✅ Migration de Next.js/React vers du HTML/CSS/JS statique : aucune dépendance (`package.json` ne sert qu’à lancer `npm run dev`). Les tests (Vitest, Playwright, axe) ont été supprimés à la demande ; la migration a été vérifiée à la main (rendu identique à l’ancien build, formulaire et menu testés).
 19. **Polices** — Bricolage Grotesque et Nunito Sans en polices variables (axe `opsz`), sous-ensemble latin hébergé dans `assets/fonts` (~125 ko de woff2 préchargés).
