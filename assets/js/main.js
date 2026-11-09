@@ -29,9 +29,11 @@
   }
 
   /* ---------- Formulaire : besoin, validation, anti-spam, envoi Web3Forms ---------- */
-  var NEEDS = ["demo", "pilot", "quote"];
-  var NEED_LABELS = { demo: "Une démo de 30 min", pilot: "Une partie pilote", quote: "Un devis Enterprise" };
-  var NEED_SUBMIT = { demo: "Réserver ma démo", pilot: "Lancer ma partie pilote", quote: "Recevoir mon devis" };
+  var NEEDS = ["demo", "discovery", "quote"];
+  // Anciens liens ou variantes d’URL acceptés pour ?besoin=
+  var NEED_ALIASES = { pilot: "discovery", decouverte: "discovery", "découverte": "discovery", devis: "quote" };
+  var NEED_LABELS = { demo: "Une démo de 30 min", discovery: "Une partie découverte", quote: "Un devis Enterprise" };
+  var NEED_SUBMIT = { demo: "Réserver ma démo", discovery: "Lancer ma partie découverte", quote: "Recevoir ma proposition" };
   var PLAYERS = { lt20: "Moins de 20", "20-50": "20 à 50", "50-200": "50 à 200", gt200: "Plus de 200" };
   var TOOLS = { piano: "Piano Analytics", ga4: "Google Analytics 4", other: "Autre / je ne sais pas" };
   var WEBMAIL = ["gmail", "googlemail", "outlook", "hotmail", "live", "yahoo", "icloud", "orange", "free", "laposte", "wanadoo", "sfr"];
@@ -41,13 +43,13 @@
   var FIELD_ORDER = ["need", "name", "email", "company", "players", "tool", "phone", "message", "consent"];
   var MSG = {
     need: "Choisissez votre besoin.",
-    name: "Indiquez votre prénom et votre nom.",
+    name: "Indiquez votre prénom et votre nom (exemple : Camille Roux).",
     emailRequired: "Indiquez votre email professionnel.",
     emailInvalid: "Cet email ne semble pas valide. Exemple : camille@entreprise.fr",
     emailWebmail: "Merci d’utiliser votre adresse professionnelle : nous échangeons avec des entreprises.",
     company: "Indiquez le nom de votre entreprise.",
-    players: "Choisissez le nombre de joueurs envisagés.",
-    tool: "Choisissez votre outil de mesure d’audience.",
+    players: "Choisissez une des tranches proposées, ou laissez « À préciser ».",
+    tool: "Choisissez votre outil de mesure d’audience (ou « Autre / je ne sais pas »).",
     phone: "Ce numéro de téléphone ne semble pas valide.",
     message: "Votre message est trop long (1 000 caractères maximum).",
     consent: "Merci de cocher la case pour que nous puissions vous recontacter.",
@@ -76,8 +78,8 @@
   }
 
   // Présélection : ?besoin= dans l'URL, puis clic sur un bouton d'appel à l'action.
-  var fromUrl = new URLSearchParams(window.location.search).get("besoin");
-  if (fromUrl) setNeed(fromUrl);
+  var fromUrl = (new URLSearchParams(window.location.search).get("besoin") || "").toLowerCase();
+  if (fromUrl) setNeed(NEED_ALIASES[fromUrl] || fromUrl);
 
   needButtons.forEach(function (b) {
     b.addEventListener("click", function () {
@@ -145,7 +147,7 @@
     else if (isWebmail(email)) e.email = MSG.emailWebmail;
     var company = raw.company.trim();
     if (!company || company.length > 120) e.company = MSG.company;
-    if (!PLAYERS[raw.players]) e.players = MSG.players;
+    if (raw.players && !PLAYERS[raw.players]) e.players = MSG.players; // facultatif
     if (!TOOLS[raw.tool]) e.tool = MSG.tool;
     var phone = raw.phone.trim();
     if (phone && (phone.length > 30 || !PHONE_RE.test(phone))) e.phone = MSG.phone;
@@ -157,6 +159,8 @@
   /* --- Affichage des erreurs --- */
   function clearErrors() {
     form.querySelectorAll(".contact-form-error").forEach(function (n) { n.remove(); });
+    var needsBox = form.querySelector(".contact-form-needs");
+    if (needsBox) needsBox.removeAttribute("aria-describedby");
     form.querySelectorAll("[aria-invalid]").forEach(function (f) {
       f.removeAttribute("aria-invalid");
       f.removeAttribute("aria-describedby");
@@ -174,9 +178,12 @@
       var span = document.createElement("span");
       span.id = f + "-error";
       span.className = "contact-form-error";
+      span.setAttribute("role", "alert");
       span.textContent = errors[f];
       if (f === "need") {
-        form.querySelector(".contact-form-needs").appendChild(span);
+        var needs = form.querySelector(".contact-form-needs");
+        needs.setAttribute("aria-describedby", span.id);
+        needs.appendChild(span);
         return;
       }
       var field = form.elements[f];
@@ -200,7 +207,7 @@
       ["Nom", raw.name.trim()],
       ["Email", raw.email.trim()],
       ["Entreprise", raw.company.trim()],
-      ["Joueurs envisagés", PLAYERS[raw.players]],
+      ["Joueurs envisagés", PLAYERS[raw.players] || "—"],
       ["Outil de mesure", TOOLS[raw.tool]],
       ["Téléphone", raw.phone.trim() || "—"],
       ["Contexte", raw.message.trim() || "—"]
@@ -218,7 +225,7 @@
 
   function success(raw) {
     sending = false;
-    track({ event: "form_submit_success", need: raw.need, players_range: raw.players, analytics_tool: raw.tool });
+    track({ event: "form_submit_success", need: raw.need, players_range: raw.players || "unspecified", analytics_tool: raw.tool });
     form.hidden = true;
     sent.hidden = false;
     sent.focus();
@@ -238,7 +245,7 @@
     }
 
     // Champ piège rempli : on fait semblant de réussir, sans rien envoyer.
-    if (form.elements.website.value.trim() !== "") { success(raw); return; }
+    if (form.elements.hp_ref.value.trim() !== "") { success(raw); return; }
 
     if (performance.now() - mountedAt < MIN_FILL_MS) {
       showFormError(MSG.tooFast);

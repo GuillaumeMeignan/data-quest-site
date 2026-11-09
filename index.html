@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Data Quest — le jeu de cartes quotidien sur vos vraies données</title>
-<meta name="description" content="Data Quest est un jeu de cartes quotidien construit sur les vraies données de votre entreprise : 5 cartes par jour pour que vos équipes ouvrent enfin leurs dashboards. Demandez une démo.">
+<title>Data Quest | Le jeu quotidien qui développe la culture data</title>
+<meta name="description" content="Jeu de cartes quotidien sur vos vraies données (Piano Analytics, GA4) : 5 cartes par jour pour que vos équipes ouvrent enfin leurs dashboards. Démo 30 min.">
 <meta name="theme-color" content="#14302b">
 <link rel="canonical" href="https://data-quest.fr/">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
@@ -12,43 +12,136 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Data Quest">
 <meta property="og:url" content="https://data-quest.fr/">
-<meta property="og:title" content="Data Quest — le jeu de cartes quotidien sur vos vraies données">
-<meta property="og:description" content="Data Quest est un jeu de cartes quotidien construit sur les vraies données de votre entreprise : 5 cartes par jour pour que vos équipes ouvrent enfin leurs dashboards. Demandez une démo.">
+<meta property="og:title" content="Data Quest | Le jeu quotidien qui développe la culture data">
+<meta property="og:description" content="Jeu de cartes quotidien sur vos vraies données (Piano Analytics, GA4) : 5 cartes par jour pour que vos équipes ouvrent enfin leurs dashboards. Démo 30 min.">
 <meta property="og:image" content="https://data-quest.fr/assets/img/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Data Quest — le jeu de cartes quotidien sur vos vraies données">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Data Quest — le jeu de cartes quotidien sur vos vraies données">
-<meta name="twitter:description" content="Data Quest est un jeu de cartes quotidien construit sur les vraies données de votre entreprise : 5 cartes par jour pour que vos équipes ouvrent enfin leurs dashboards. Demandez une démo.">
+<meta name="twitter:title" content="Data Quest | Le jeu quotidien qui développe la culture data">
+<meta name="twitter:description" content="Jeu de cartes quotidien sur vos vraies données (Piano Analytics, GA4) : 5 cartes par jour pour que vos équipes ouvrent enfin leurs dashboards. Démo 30 min.">
 <meta name="twitter:image" content="https://data-quest.fr/assets/img/og-image.png">
 <link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/nunito-sans-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/base.css">
 <link rel="stylesheet" href="/assets/css/site.css">
+<!-- TODO-CONFIRMER : url de l’Organization = site Data Quest faute d’adresse propre à Kimetrix dans le dépôt. Pas de logo, note ni prix déclarés. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://data-quest.fr/#organization",
+      "name": "Kimetrix",
+      "alternateName": "Data Quest by Kimetrix",
+      "url": "https://data-quest.fr/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://data-quest.fr/#website",
+      "url": "https://data-quest.fr/",
+      "name": "Data Quest",
+      "alternateName": "Data Quest, un produit Kimetrix",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "https://data-quest.fr/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://data-quest.fr/#faq",
+      "inLanguage": "fr-FR",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quelle différence avec une formation ou un quiz classique ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Une formation se suit une fois, puis s’oublie : Data Quest propose 5 cartes par jour, quelques minutes, pendant 4 à 5 semaines, pour créer une habitude. Les cartes portent sur les vraies données de votre entreprise, et une mauvaise réponse est une nouvelle découverte, pas une faute."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de temps par jour pour un joueur ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "5 cartes par jour ouvré, quelques minutes, pendant 4 à 5 semaines. Un jour manqué se rattrape jusqu’au vendredi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Et pour moi, combien de temps de préparation ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un assistant en quelques étapes : votre entreprise, vos joueurs, le calendrier. Ensuite, la partie tourne seule."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Est-ce une évaluation des salariés ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Les scores individuels restent privés et vous ne voyez que des résultats agrégés, à partir de 5 réponses. Le classement affiche des pseudos choisis par les joueurs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels outils sont compatibles ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Piano Analytics ou Google Analytics 4 pour les cartes calculées. Vos autres chiffres (CRM, ventes) sont saisis une fois au lancement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Et si nous n’utilisons ni Piano Analytics ni GA4 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vous pouvez jouer avec les cartes culture data et les cartes personnalisées. Ces dernières reposent sur vos chiffres internes (CRM, ventes, magasins ou agences), saisis une fois au lancement. Seules les cartes calculées nécessitent Piano Analytics ou GA4."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il installer quelque chose ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Rien. Le jeu se joue dans le navigateur, au poste de travail ; chaque joueur reçoit une invitation par email."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a href="#contact" class="skip-link">Aller au formulaire de contact</a>
 <header class="header-header">
   <div class="wrap header-bar"><a href="#top" class="header-logo"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 28 28"><rect x="7" y="2" width="16" height="22" rx="3" fill="#F7C548" transform="rotate(12 15 13)"></rect><rect x="4" y="4" width="16" height="22" rx="3" fill="#FFF7E8" stroke="#14302B" stroke-width="1.5"></rect><circle cx="12" cy="15" r="4" fill="#2A9D8F"></circle></svg>Data Quest</a><button type="button" class="header-toggle" aria-expanded="false" aria-controls="header-panel" aria-label="Ouvrir le menu"><span class="header-burger" aria-hidden="true"><span></span><span></span><span></span></span></button>
     <div id="header-panel" class="header-panel" data-open="false">
-      <nav id="main-nav" aria-label="Navigation principale" class="header-nav"><a href="#principe">Le principe</a><a href="#jeu">Le jeu</a><a href="#resultats">Pour vous</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a></nav><a href="#contact" class="btn btn-sm header-cta" data-cta="header" data-need="demo">Demander une démo</a>
+      <nav id="main-nav" aria-label="Navigation principale" class="header-nav"><a href="#principe">Le principe</a><a href="#jeu">Le jeu</a><a href="#resultats">Pour vous</a><a href="#tarifs">Tarifs</a><a href="#faq">FAQ</a></nav><a href="#contact" class="btn btn-sm header-cta" data-cta="header" data-need="demo">Réserver une démo de 30 min</a>
     </div></div>
 </header>
 <main>
   <section id="top" aria-labelledby="h-hero" class="wrap hero-hero">
     <div class="hero-copy"><span class="hero-badge">LE JEU DATA DES ÉQUIPES</span>
       <h1 id="h-hero" class="hero-h1">Vos équipes ouvrent enfin leurs dashboards. <span class="hero-accent">Chaque matin.</span></h1>
-      <p class="hero-lead">Data Quest est un jeu de cartes quotidien sur <strong>les vraies données de votre entreprise</strong>. 5 cartes par jour, quelques minutes, pendant 5 semaines : vos salariés apprennent à lire leurs chiffres… et prennent l’habitude d’aller les chercher.</p>
+      <p class="hero-lead">Un jeu de cartes quotidien sur <strong>les données réelles de votre entreprise</strong> : 5 cartes par jour, quelques minutes, pendant 4 à 5 semaines. Vos salariés apprennent à lire leurs chiffres, prennent l’habitude d’ouvrir leurs dashboards et installent une vraie culture data, sans formation de plus.</p>
+      <!-- TODO-CONFIRMER : afficher « Partie pilote : places limitées » ici uniquement si confirmé.
+      <p class="hero-scarcity">Partie pilote : places limitées</p>
+      -->
       <div class="hero-actions"><a href="#contact" class="btn" data-cta="hero" data-need="demo">Réserver une démo de 30 min</a><a href="#principe" class="btn-ghost">Voir comment ça marche</a></div>
       <ul class="hero-assurances">
+        <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><path d="M3 8.5 L6.5 12 L13 4.5" stroke="#2A9D8F" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>Créé par un consultant data (Kimetrix, depuis 2017)</li>
         <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><path d="M3 8.5 L6.5 12 L13 4.5" stroke="#2A9D8F" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>Prêt en une heure de votre temps</li>
-        <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><path d="M3 8.5 L6.5 12 L13 4.5" stroke="#2A9D8F" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>Piano Analytics ou GA4</li>
+        <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><path d="M3 8.5 L6.5 12 L13 4.5" stroke="#2A9D8F" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>Compatible Piano Analytics et GA4</li>
         <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><path d="M3 8.5 L6.5 12 L13 4.5" stroke="#2A9D8F" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>Scores individuels privés</li>
       </ul>
     </div>
-    <div class="hero-visual" aria-hidden="true">
+    <div class="hero-visual" role="img" aria-label="Exemple de carte du jeu, thème Trafic : une question sur la part des visites faites sur mobile, avec quatre réponses dont la C mise en avant.">
       <div class="hero-stage">
         <div class="hero-back hero-back-left">
         </div>
@@ -61,6 +154,10 @@
         <div class="hero-combo">Combo x3 ! +5</div>
       </div>
     </div>
+  </section>
+  <section aria-label="Qui est derrière Data Quest" class="wrap founder-strip">
+    <picture class="founder-photo"><source srcset="/assets/img/guillaume.webp" type="image/webp"><img src="/assets/img/guillaume.jpg" width="56" height="56" alt="Guillaume, fondateur de Kimetrix" loading="lazy" decoding="async"></picture>
+    <p><strong>Guillaume, fondateur de Kimetrix</strong> (conseil en web analytics, 2017). Chaque carte est écrite par quelqu’un qui passe ses journées dans Piano Analytics, GA4 et les CRM de ses clients.</p>
   </section>
   <section aria-labelledby="h-pb" class="light">
     <div class="wrap problem-inner">
@@ -81,12 +178,13 @@
           <p>Les décisions se prennent encore « au feeling », loin des chiffres qui existent déjà.</p>
         </article>
       </div>
+      <p class="problem-proof">Une demi-journée de formation s’oublie ; 20 à 25 rendez-vous quotidiens de quelques minutes créent une habitude.</p>
       <p class="problem-pivot">Data Quest change l’approche : <span>on ne forme pas à la data, on y joue</span>. Un peu chaque jour, assez longtemps pour que ça devienne un réflexe.</p>
     </div>
   </section>
   <section id="principe" aria-labelledby="h-principe" class="wrap principle-section">
     <div class="head"><span class="eyebrow">LE PRINCIPE</span>
-      <h2 id="h-principe" class="h2">Une partie, trois temps</h2>
+      <h2 id="h-principe" class="h2">Comment ça marche : une partie, trois temps</h2>
     </div>
     <ol class="principle-list">
       <li class="principle-item"><span class="principle-num" aria-hidden="true">1</span>
@@ -99,11 +197,12 @@
         <h3>Vous mesurez le progrès</h3>
         <p>Participation, bonnes réponses, grandes découvertes et progression ressentie avant / après : un bilan concret à présenter à votre direction.</p></li>
     </ol>
+    <p class="section-cta"><a href="#contact" class="btn-ghost" data-cta="principle" data-need="demo">Réserver une démo de 30 min</a></p>
   </section>
   <section id="jeu" aria-labelledby="h-jeu" class="surface">
     <div class="wrap game-inner">
       <div class="game-copy"><span class="eyebrow">LE JEU</span>
-        <h2 id="h-jeu" class="h2">Pensé pour qu’on y revienne chaque matin</h2>
+        <h2 id="h-jeu" class="h2">Une gamification pensée pour qu’on y revienne chaque matin</h2>
         <p class="game-intro">Un vrai jeu de société, pas un quiz de formation. Pas de rouge, pas de croix : une mauvaise réponse est une <strong>nouvelle découverte</strong>.</p>
         <ul class="game-list">
           <li><svg aria-hidden="true" width="44" height="44" viewBox="0 0 48 48" class="game-icon"><path d="M24 3 C33 10 35 21 32 31 L16 31 C13 21 15 10 24 3 Z" fill="#FFF7E8" stroke="#22201C" stroke-width="2"></path><circle cx="24" cy="16" r="4.5" fill="#4C7BE8" stroke="#22201C" stroke-width="2"></circle><path d="M16 23 L8 33 L16 31 Z M32 23 L40 33 L32 31 Z" fill="#E4573D" stroke="#22201C" stroke-width="2" stroke-linejoin="round"></path><path d="M18 32 Q24 47 30 32 Z" fill="#F7C548" stroke="#22201C" stroke-width="2" stroke-linejoin="round"></path></svg><span><strong>Des bonus à jouer chaque semaine</strong><br/>La fusée double les points, les ciseaux retirent deux mauvaises réponses, l’aimant chipe des points à un collègue.</span></li>
@@ -112,7 +211,7 @@
           <li><svg aria-hidden="true" width="44" height="44" viewBox="0 0 44 44" class="game-icon"><rect x="8" y="6" width="24" height="32" rx="4" fill="#FFF7E8" stroke="#22201C" stroke-width="2"></rect><rect x="14" y="10" width="24" height="32" rx="4" fill="#2A9D8F" stroke="#22201C" stroke-width="2"></rect><path d="M21 26 L24.5 29.5 L31 22" stroke="#FFF7E8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span><strong>La révélation du jour</strong><br/>Les réponses se dévoilent une fois les 5 cartes jouées, chacune avec son explication : on apprend en riant.</span></li>
         </ul>
       </div>
-      <div class="game-board" aria-hidden="true">
+      <div class="game-board" role="img" aria-label="Exemple de plateau du jour : cinq cartes à jouer, un duel entre deux équipes à 56 % contre 44 % et un classement dont le joueur occupe la troisième place.">
         <div class="game-board-head"><span>Plateau du jour</span><span class="game-pts">245 pts</span></div>
         <div class="game-slots"><span style="background:#2A9D8F"></span><span style="background:#7B5EA7"></span><span style="background:#C97A22"></span><span class="game-empty"></span><span class="game-empty"></span></div>
         <div class="game-panel"><span class="game-panel-title">Duel des équipes · manche 2</span>
@@ -156,7 +255,8 @@
     <div class="wrap results-inner">
       <div class="head"><span class="eyebrow">POUR VOUS, MAÎTRE DU JEU</span>
         <h2 id="h-res" class="h2">Chaque vendredi, la preuve que vos équipes progressent</h2>
-        <p class="results-intro">Un bilan arrive dans votre boîte mail à la fin de chaque manche, et un bilan final clôt la partie. De quoi suivre l’évolution semaine après semaine… et la présenter à votre direction.</p>
+        <p class="results-intro">Un bilan arrive dans votre boîte mail à la fin de chaque manche, et un bilan final clôt la partie. De quoi suivre l’évolution semaine après semaine, mesurer l’adoption de vos dashboards et la présenter à votre direction.</p>
+        <!-- TODO-CONFIRMER : les bilans mesurent participation, bonnes réponses et progression ressentie ; confirmer que « mesurer l’adoption de vos dashboards » est une promesse tenable (sinon : « suivre l’engagement de vos équipes »). -->
       </div>
       <div class="results-cols">
         <div class="results-benefits">
@@ -178,7 +278,7 @@
           </div>
         </div>
         <div class="results-visuals" role="group" aria-label="Exemples de bilans">
-          <article class="results-mail">
+          <article class="results-mail" aria-label="Exemple de bilan hebdomadaire reçu par email : participation, taux de bonne réponse et thèmes à renforcer.">
             <div class="results-mail-head"><span class="results-mail-title"><svg aria-hidden="true" width="20" height="16" viewBox="0 0 20 16"><rect x="1" y="1" width="18" height="14" rx="2" fill="none" stroke="#F7C548" stroke-width="2"></rect><path d="M2 3 L10 9 L18 3" stroke="#F7C548" stroke-width="2" fill="none"></path></svg>Bilan de la semaine 3</span><span class="results-mail-meta">Vendredi, 18 h · email à l’admin</span></div>
             <div class="results-mail-body">
               <div class="results-kpis">
@@ -196,11 +296,12 @@
               </div>
             </div>
           </article>
-          <article class="results-radar"><svg role="img" aria-label="Radar de progression ressentie sur 8 thèmes : la courbe de fin de partie englobe celle du début sur tous les thèmes" width="340" height="240" viewBox="-50 0 340 240" class="results-radar-svg"><polygon points="120.0,32.0 182.2,57.8 208.0,120.0 182.2,182.2 120.0,208.0 57.8,182.2 32.0,120.0 57.8,57.8" fill="#F4EEDF" stroke="#D8CDB5" stroke-width="1"></polygon><polygon points="120.0,76.0 151.1,88.9 164.0,120.0 151.1,151.1 120.0,164.0 88.9,151.1 76.0,120.0 88.9,88.9" fill="none" stroke="#D8CDB5" stroke-width="1"></polygon><path d="M120 120 L120 32 M120 120 L182.2 57.8 M120 120 L208 120 M120 120 L182.2 182.2 M120 120 L120 208 M120 120 L57.8 182.2 M120 120 L32 120 M120 120 L57.8 57.8" stroke="#D8CDB5" stroke-width="1"></path><polygon points="120.0,58.4 163.6,76.4 172.8,120.0 157.3,157.3 120.0,181.6 70.2,169.8 67.2,120.0 82.7,82.7" fill="#2A9D8F" fill-opacity=".35" stroke="#1E6B5E" stroke-width="3" stroke-linejoin="round"></polygon><polygon points="120.0,84.8 151.1,88.9 146.4,120.0 144.9,144.9 120.0,164.0 82.7,157.3 93.6,120.0 95.1,95.1" fill="none" stroke="#8A7F6B" stroke-width="2.5" stroke-dasharray="5 4" stroke-linejoin="round"></polygon><g font-family="Nunito Sans, sans-serif" font-size="12" font-weight="700" fill="#3F3A31"><text x="120" y="22" text-anchor="middle">Trafic</text><text x="188" y="50" text-anchor="start">Acquisition</text><text x="214" y="124" text-anchor="start">Conversion</text><text x="188" y="198" text-anchor="start">Ventes</text><text x="120" y="226" text-anchor="middle">Clients &amp; CRM</text><text x="52" y="198" text-anchor="end">Outils</text><text x="26" y="124" text-anchor="end">Culture data</text><text x="52" y="50" text-anchor="end">Marché</text></g></svg>
+          <article class="results-radar"><svg role="img" aria-label="Radar de progression ressentie sur 8 thèmes : à la fin de la partie, la courbe englobe celle du lancement sur tous les thèmes." width="340" height="240" viewBox="-50 0 340 240" class="results-radar-svg"><polygon points="120.0,32.0 182.2,57.8 208.0,120.0 182.2,182.2 120.0,208.0 57.8,182.2 32.0,120.0 57.8,57.8" fill="#F4EEDF" stroke="#D8CDB5" stroke-width="1"></polygon><polygon points="120.0,76.0 151.1,88.9 164.0,120.0 151.1,151.1 120.0,164.0 88.9,151.1 76.0,120.0 88.9,88.9" fill="none" stroke="#D8CDB5" stroke-width="1"></polygon><path d="M120 120 L120 32 M120 120 L182.2 57.8 M120 120 L208 120 M120 120 L182.2 182.2 M120 120 L120 208 M120 120 L57.8 182.2 M120 120 L32 120 M120 120 L57.8 57.8" stroke="#D8CDB5" stroke-width="1"></path><polygon points="120.0,58.4 163.6,76.4 172.8,120.0 157.3,157.3 120.0,181.6 70.2,169.8 67.2,120.0 82.7,82.7" fill="#2A9D8F" fill-opacity=".35" stroke="#1E6B5E" stroke-width="3" stroke-linejoin="round"></polygon><polygon points="120.0,84.8 151.1,88.9 146.4,120.0 144.9,144.9 120.0,164.0 82.7,157.3 93.6,120.0 95.1,95.1" fill="none" stroke="#8A7F6B" stroke-width="2.5" stroke-dasharray="5 4" stroke-linejoin="round"></polygon><g font-family="Nunito Sans, sans-serif" font-size="12" font-weight="700" fill="#3F3A31"><text x="120" y="22" text-anchor="middle">Trafic</text><text x="188" y="50" text-anchor="start">Acquisition</text><text x="214" y="124" text-anchor="start">Conversion</text><text x="188" y="198" text-anchor="start">Ventes</text><text x="120" y="226" text-anchor="middle">Clients &amp; CRM</text><text x="52" y="198" text-anchor="end">Outils</text><text x="26" y="124" text-anchor="end">Culture data</text><text x="52" y="50" text-anchor="end">Marché</text></g></svg>
             <div class="results-radar-copy"><span class="results-radar-kicker">BILAN FINAL</span>
               <h3>La progression ressentie de vos équipes</h3><span class="results-legend"><svg aria-hidden="true" width="28" height="8" viewBox="0 0 28 8"><path d="M1 4 H27" stroke="#8A7F6B" stroke-width="2.5" stroke-dasharray="5 4"></path></svg>Au lancement</span><span class="results-legend results-legend-bold"><svg aria-hidden="true" width="28" height="8" viewBox="0 0 28 8"><path d="M1 4 H27" stroke="#1E6B5E" stroke-width="3"></path></svg>À la fin de la partie</span><span class="results-radar-note">Auto-évaluations anonymes, restituées pour toute l’entreprise.</span></div>
           </article><span class="results-illustrative">Exemples illustratifs</span></div>
       </div>
+      <p class="section-cta"><a href="#contact" class="btn-ghost" data-cta="results" data-need="demo">Réserver une démo de 30 min</a></p>
     </div>
   </section>
   <section id="tarifs" aria-labelledby="h-tarifs" class="wrap pricing-section">
@@ -211,7 +312,7 @@
       <div class="pricing-enterprise"><span class="pricing-ribbon">L’offre complète</span>
         <div class="pricing-title-row">
           <h3 class="pricing-name">Enterprise</h3><span class="pricing-price">Sur devis <span class="pricing-unit">· à la partie</span></span></div>
-        <p class="pricing-desc">Une partie de 5 semaines construite sur vos données, avec un accompagnement de bout en bout.</p>
+        <p class="pricing-desc">Une partie de 4 à 5 semaines construite sur vos données, avec un accompagnement de bout en bout.</p>
         <ul class="pricing-inclusions">
           <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" class="pricing-check" style="flex:none"><path d="M3 8.5 L6.5 12 L13 4.5" stroke="#1E6B5E" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Autant de joueurs que nécessaire, plusieurs sites et langues</span></li>
           <li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" class="pricing-check" style="flex:none"><path d="M3 8.5 L6.5 12 L13 4.5" stroke="#1E6B5E" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Questions personnalisées avec vos données Piano Analytics ou GA4</span></li>
@@ -226,8 +327,10 @@
           <li>Cartes culture data et personnalisées</li>
           <li>Sans connexion à vos outils</li>
           <li>Pour tester le jeu en équipe</li>
-        </ul><a href="#contact" class="pricing-disc-cta" data-cta="pricing_discovery" data-need="pilot">Essayer gratuitement</a></div>
+        </ul><a href="#contact" class="pricing-disc-cta" data-cta="pricing_discovery" data-need="discovery">Essayer gratuitement</a></div>
     </div>
+    <!-- TODO-CONFIRMER : délai « proposition sous 48 h » à valider avant mise en ligne. -->
+    <p class="pricing-note">Tarif de la partie selon le nombre de joueurs · proposition sous 48 h</p>
   </section>
   <section aria-labelledby="h-qui" class="surface">
     <div class="wrap about-inner">
@@ -235,27 +338,47 @@
       <div class="about-copy">
         <h2 id="h-qui">Créé par un consultant data, pas par une agence de jeux</h2>
         <p>Data Quest est né chez Kimetrix, cabinet de conseil en web analytics fondé en 2017. Chaque carte est écrite par quelqu’un qui passe ses journées dans Piano Analytics, GA4 et les CRM de ses clients.</p><span class="about-sign">Guillaume · fondateur de Kimetrix</span></div>
+      <!-- TODO-CONFIRMER : témoignage ou logos clients à ajouter ici dès qu’un accord écrit existe (ne rien afficher avant).
+      <figure class="about-proof">
+        <blockquote>« Texte du témoignage. »</blockquote>
+        <figcaption>Prénom Nom · Fonction, Entreprise</figcaption>
+      </figure>
+      -->
     </div>
   </section>
   <section id="faq" aria-labelledby="h-faq" class="faq-section">
     <h2 id="h-faq" class="h2">Vos questions</h2>
     <div class="faq-list">
+      <details class="faq-item" data-faq="Quelle différence avec une formation ou un quiz classique ?">
+        <summary>Quelle différence avec une formation ou un quiz classique ?<span class="faq-plus" aria-hidden="true">+</span></summary>
+        <p>Une formation se suit une fois, puis s’oublie : Data Quest propose 5 cartes par jour, quelques minutes, pendant 4 à 5 semaines, pour créer une habitude. Les cartes portent sur les vraies données de votre entreprise, et une mauvaise réponse est une nouvelle découverte, pas une faute.</p>
+      </details>
       <details class="faq-item" data-faq="Combien de temps par jour pour un joueur ?">
         <summary>Combien de temps par jour pour un joueur ?<span class="faq-plus" aria-hidden="true">+</span></summary>
-        <p>5 cartes par jour ouvré, quelques minutes. Un jour manqué se rattrape jusqu’au vendredi.</p>
+        <p>5 cartes par jour ouvré, quelques minutes, pendant 4 à 5 semaines. Un jour manqué se rattrape jusqu’au vendredi.</p>
       </details>
       <details class="faq-item" data-faq="Et pour moi, combien de temps de préparation ?">
         <summary>Et pour moi, combien de temps de préparation ?<span class="faq-plus" aria-hidden="true">+</span></summary>
         <p>Un assistant en quelques étapes : votre entreprise, vos joueurs, le calendrier. Ensuite, la partie tourne seule.</p>
       </details>
-      <details class="faq-item" data-faq="Mes salariés vont-ils se sentir évalués ?">
-        <summary>Mes salariés vont-ils se sentir évalués ?<span class="faq-plus" aria-hidden="true">+</span></summary>
-        <p>Non. Les scores individuels restent privés et vous ne voyez que des résultats agrégés. Le classement affiche des pseudos choisis par les joueurs.</p>
+      <details class="faq-item" data-faq="Est-ce une évaluation des salariés ?">
+        <summary>Est-ce une évaluation des salariés ?<span class="faq-plus" aria-hidden="true">+</span></summary>
+        <p>Non. Les scores individuels restent privés et vous ne voyez que des résultats agrégés, à partir de 5 réponses. Le classement affiche des pseudos choisis par les joueurs.</p>
       </details>
       <details class="faq-item" data-faq="Quels outils sont compatibles ?">
         <summary>Quels outils sont compatibles ?<span class="faq-plus" aria-hidden="true">+</span></summary>
         <p>Piano Analytics ou Google Analytics 4 pour les cartes calculées. Vos autres chiffres (CRM, ventes) sont saisis une fois au lancement.</p>
       </details>
+      <details class="faq-item" data-faq="Et si nous n’utilisons ni Piano Analytics ni GA4 ?">
+        <summary>Et si nous n’utilisons ni Piano Analytics ni GA4 ?<span class="faq-plus" aria-hidden="true">+</span></summary>
+        <p>Vous pouvez jouer avec les cartes culture data et les cartes personnalisées. Ces dernières reposent sur vos chiffres internes (CRM, ventes, magasins ou agences), saisis une fois au lancement. Seules les cartes calculées nécessitent Piano Analytics ou GA4.</p>
+      </details>
+      <!-- TODO-CONFIRMER : hébergement des données à valider (hébergeur, localisation UE) avant d’activer cette question et de l’ajouter au JSON-LD FAQPage.
+      <details class="faq-item" data-faq="Où sont hébergées les données ?">
+        <summary>Où sont hébergées les données ?<span class="faq-plus" aria-hidden="true">+</span></summary>
+        <p>Les données de votre partie sont hébergées dans l’Union européenne.</p>
+      </details>
+      -->
       <details class="faq-item" data-faq="Faut-il installer quelque chose ?">
         <summary>Faut-il installer quelque chose ?<span class="faq-plus" aria-hidden="true">+</span></summary>
         <p>Rien. Le jeu se joue dans le navigateur, au poste de travail ; chaque joueur reçoit une invitation par email.</p>
@@ -278,7 +401,7 @@
 <legend>Votre besoin</legend>
 <div class="contact-form-need-row">
 <button type="button" data-need-option="demo" aria-pressed="true" class="contact-form-need-btn">Une démo de 30 min</button>
-<button type="button" data-need-option="pilot" aria-pressed="false" class="contact-form-need-btn">Une partie pilote</button>
+<button type="button" data-need-option="discovery" aria-pressed="false" class="contact-form-need-btn">Une partie découverte (gratuite)</button>
 <button type="button" data-need-option="quote" aria-pressed="false" class="contact-form-need-btn">Un devis Enterprise</button>
 </div>
 <input type="hidden" name="need" value="demo">
@@ -287,29 +410,36 @@
 <label>Prénom et nom<input type="text" name="name" required autocomplete="name" placeholder="Camille Roux" maxlength="120"></label>
 <label>Email professionnel<input type="email" name="email" required autocomplete="email" placeholder="camille@entreprise.fr" maxlength="254"></label>
 <label>Entreprise<input type="text" name="company" required autocomplete="organization" placeholder="Maison Dupont" maxlength="120"></label>
-<label>Nombre de joueurs envisagés<select name="players" required><option value="lt20" selected>Moins de 20</option><option value="20-50">20 à 50</option><option value="50-200">50 à 200</option><option value="gt200">Plus de 200</option></select></label>
-<label>Outil de mesure d’audience<select name="tool" required><option value="piano" selected>Piano Analytics</option><option value="ga4">Google Analytics 4</option><option value="other">Autre / je ne sais pas</option></select></label>
+<label><span>Nombre de joueurs envisagés <span class="contact-form-opt">· facultatif</span></span><select name="players"><option value="" selected>À préciser</option><option value="lt20">Moins de 20</option><option value="20-50">20 à 50</option><option value="50-200">50 à 200</option><option value="gt200">Plus de 200</option></select></label>
+<label>Outil de mesure d’audience<select name="tool" required><option value="" selected disabled>Choisir…</option><option value="piano">Piano Analytics</option><option value="ga4">Google Analytics 4</option><option value="other">Autre / je ne sais pas</option></select></label>
 <label><span>Téléphone <span class="contact-form-opt">· facultatif</span></span><input type="tel" name="phone" autocomplete="tel" maxlength="30"></label>
 </div>
 <label><span>Votre contexte en deux lignes <span class="contact-form-opt">· facultatif</span></span><textarea name="message" rows="3" maxlength="1000" placeholder="Ex. : nos équipes marketing et magasins ne consultent jamais le dashboard hebdo…"></textarea></label>
-<!-- Champ piège : invisible pour les personnes, tentant pour les robots. -->
-<div class="contact-form-trap" aria-hidden="true"><label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+<!-- Champ piège anti-robot, invisible pour les personnes. Nom volontairement neutre : un nom comme « website » est rempli par les gestionnaires de mots de passe, ce qui ferait perdre de vraies demandes. -->
+<div class="contact-form-trap" aria-hidden="true"><label>Laisser vide<input type="text" name="hp_ref" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore></label></div>
 <div>
 <label class="contact-form-consent"><input type="checkbox" name="consent" required><span>J’accepte que Kimetrix utilise ces informations pour me recontacter au sujet de Data Quest. <a href="/confidentialite/">Politique de confidentialité</a></span></label>
 </div>
 <p id="form-error" class="contact-form-form-error" role="alert" hidden></p>
 <button type="submit" class="contact-form-submit">Réserver ma démo</button>
+<!-- TODO-CONFIRMER : délai de réponse « 24 h ouvrées » à valider avant mise en ligne. -->
+<p class="contact-form-micro">Réponse sous 24 h ouvrées. 30 min de démo, sans engagement.</p>
 </form>
 <div id="form-sent" class="contact-form-sent" role="status" tabindex="-1" hidden>
 <svg aria-hidden="true" width="72" height="72" viewBox="0 0 72 72"><rect x="14" y="8" width="40" height="54" rx="6" fill="#2A9D8F" stroke="#22201C" stroke-width="3" transform="rotate(-8 34 35)"/><path d="M24 36 L32 44 L48 26" stroke="#FFF7E8" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-<h3>Carte jouée&nbsp;!</h3>
-<p>Merci, votre demande est bien partie. Je reviens vers vous très vite pour caler la démo.</p>
+<h3>Carte jouée&nbsp;! Merci, votre demande est bien partie.</h3>
+<ol class="contact-form-next" aria-label="Ce qui se passe ensuite">
+<li><span aria-hidden="true">1</span>Je vous réponds personnellement sous 24 h ouvrées.</li>
+<li><span aria-hidden="true">2</span>Nous calons ensemble 30 minutes de démo, sur un exemple proche de votre activité.</li>
+<li><span aria-hidden="true">3</span>Sans engagement : vous décidez ensuite.</li>
+</ol>
+<!-- TODO-CONFIRMER : délai « 24 h ouvrées » (identique à celui sous le bouton). Aucun email de confirmation n’est envoyé au prospect. -->
 <button type="button" id="form-again" class="contact-form-link">Envoyer une autre demande</button>
 </div></div>
     </div>
   </section>
 </main>
-<footer class="wrap footer-footer"><span>Data Quest · un produit Kimetrix</span>
+<footer class="wrap footer-footer"><span>Data Quest, un produit Kimetrix</span>
   <nav aria-label="Liens légaux" class="footer-links"><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a><a href="#contact">Contact</a></nav>
 </footer>
 <script src="/assets/js/config.js"></script>
