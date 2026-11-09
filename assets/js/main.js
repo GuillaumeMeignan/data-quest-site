@@ -6,18 +6,26 @@
   // Ne jamais y mettre de donnée personnelle.
   function track(payload) { window.dataLayer.push(payload); }
 
-  /* ---------- Menu mobile ---------- */
+  /* ---------- Menu mobile (burger) ---------- */
   var toggle = document.querySelector(".header-toggle");
-  var nav = document.getElementById("main-nav");
-  function setMenu(open) {
-    if (!toggle || !nav) return;
-    nav.setAttribute("data-open", open ? "true" : "false");
+  var panel = document.getElementById("header-panel");
+  var DESKTOP = window.matchMedia("(min-width: 901px)");
+  function setMenu(open, returnFocus) {
+    if (!toggle || !panel) return;
+    panel.setAttribute("data-open", open ? "true" : "false");
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    toggle.textContent = open ? "Fermer" : "Menu";
+    toggle.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+    if (!open && returnFocus) toggle.focus();
   }
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () { setMenu(nav.getAttribute("data-open") !== "true"); });
-    nav.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+  function isOpen() { return panel.getAttribute("data-open") === "true"; }
+  if (toggle && panel) {
+    toggle.addEventListener("click", function () { setMenu(!isOpen()); });
+    // Un clic sur un lien (ancre ou CTA) referme le menu.
+    panel.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && isOpen()) setMenu(false, true); });
+    document.addEventListener("click", function (e) { if (isOpen() && !e.target.closest(".header-bar")) setMenu(false); });
+    var onChange = function (e) { if (e.matches) setMenu(false); };
+    if (DESKTOP.addEventListener) DESKTOP.addEventListener("change", onChange); else DESKTOP.addListener(onChange);
   }
 
   /* ---------- Formulaire : besoin, validation, anti-spam, envoi Web3Forms ---------- */
