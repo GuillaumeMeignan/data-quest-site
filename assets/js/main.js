@@ -35,21 +35,18 @@
   var NEED_LABELS = { demo: "Une démo de 30 min", discovery: "Une partie découverte", quote: "Un devis Enterprise" };
   var NEED_SUBMIT = { demo: "Réserver ma démo", discovery: "Lancer ma partie découverte", quote: "Recevoir ma proposition" };
   var PLAYERS = { lt20: "Moins de 20", "20-50": "20 à 50", "50-200": "50 à 200", gt200: "Plus de 200" };
-  var TOOLS = { piano: "Piano Analytics", ga4: "Google Analytics 4", other: "Autre / je ne sais pas" };
   var WEBMAIL = ["gmail", "googlemail", "outlook", "hotmail", "live", "yahoo", "icloud", "orange", "free", "laposte", "wanadoo", "sfr"];
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   var PHONE_RE = /^[+()\d\s.\-]{6,30}$/;
   var MIN_FILL_MS = 3000; // délai minimal de remplissage (anti-robot)
-  var FIELD_ORDER = ["need", "name", "email", "company", "players", "tool", "phone", "message", "consent"];
+  var FIELD_ORDER = ["need", "name", "email", "players", "phone", "message", "consent"];
   var MSG = {
     need: "Choisissez votre besoin.",
     name: "Indiquez votre prénom et votre nom (exemple : Camille Roux).",
     emailRequired: "Indiquez votre email professionnel.",
     emailInvalid: "Cet email ne semble pas valide. Exemple : camille@entreprise.fr",
     emailWebmail: "Merci d’utiliser votre adresse professionnelle : nous échangeons avec des entreprises.",
-    company: "Indiquez le nom de votre entreprise.",
     players: "Choisissez une des tranches proposées, ou laissez « À préciser ».",
-    tool: "Choisissez votre outil de mesure d’audience (ou « Autre / je ne sais pas »).",
     phone: "Ce numéro de téléphone ne semble pas valide.",
     message: "Votre message est trop long (1 000 caractères maximum).",
     consent: "Merci de cocher la case pour que nous puissions vous recontacter.",
@@ -130,8 +127,8 @@
   function readFields() {
     var v = function (n) { return (form.elements[n].value || ""); };
     return {
-      need: v("need"), name: v("name"), email: v("email"), company: v("company"),
-      players: v("players"), tool: v("tool"), phone: v("phone"), message: v("message"),
+      need: v("need"), name: v("name"), email: v("email"),
+      players: v("players"), phone: v("phone"), message: v("message"),
       consent: form.elements.consent.checked
     };
   }
@@ -145,10 +142,7 @@
     if (!email) e.email = MSG.emailRequired;
     else if (email.length > 254 || !EMAIL_RE.test(email)) e.email = MSG.emailInvalid;
     else if (isWebmail(email)) e.email = MSG.emailWebmail;
-    var company = raw.company.trim();
-    if (!company || company.length > 120) e.company = MSG.company;
     if (raw.players && !PLAYERS[raw.players]) e.players = MSG.players; // facultatif
-    if (!TOOLS[raw.tool]) e.tool = MSG.tool;
     var phone = raw.phone.trim();
     if (phone && (phone.length > 30 || !PHONE_RE.test(phone))) e.phone = MSG.phone;
     if (raw.message.trim().length > 1000) e.message = MSG.message;
@@ -206,9 +200,7 @@
       ["Besoin", NEED_LABELS[raw.need]],
       ["Nom", raw.name.trim()],
       ["Email", raw.email.trim()],
-      ["Entreprise", raw.company.trim()],
       ["Joueurs envisagés", PLAYERS[raw.players] || "—"],
-      ["Outil de mesure", TOOLS[raw.tool]],
       ["Téléphone", raw.phone.trim() || "—"],
       ["Contexte", raw.message.trim() || "—"]
     ];
@@ -225,7 +217,7 @@
 
   function success(raw) {
     sending = false;
-    track({ event: "form_submit_success", need: raw.need, players_range: raw.players || "unspecified", analytics_tool: raw.tool });
+    track({ event: "form_submit_success", need: raw.need, players_range: raw.players || "unspecified" });
     form.hidden = true;
     sent.hidden = false;
     sent.focus();
@@ -267,7 +259,7 @@
 
     var payload = {
       access_key: WEB3FORMS_ACCESS_KEY,
-      subject: "[Data Quest] Nouvelle demande : " + NEED_LABELS[raw.need] + " — " + raw.company.trim(),
+      subject: "[Data Quest] Nouvelle demande : " + NEED_LABELS[raw.need] + " — " + raw.name.trim(),
       from_name: "Data Quest",
       name: raw.name.trim(),
       email: raw.email.trim(), // utilisé par Web3Forms comme adresse de réponse
